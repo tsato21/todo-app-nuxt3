@@ -9,6 +9,7 @@
         </button>
         <AddTodoModal
         :modalActive="modalActive"
+        @update:modalActive="modalActive = $event"
         @close-modal="toggleModal"
         >
         </AddTodoModal>
@@ -41,14 +42,18 @@
 
 <script setup="ts">
 import { ref } from 'vue';
-import { useTodoStore } from '/stores/todoStore.ts';
-
-
+import { useTodoStore } from '@/stores/todoStore';
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
+
+console.log(todos);
+
 
 const modalActive = ref(false);
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
+  console.log("Modal active is " + modalActive.value);
 };
+
+
 </script>
