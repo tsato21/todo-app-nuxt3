@@ -4,11 +4,11 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxt/ui',
+    '@nuxtjs/tailwindcss'
   ],
   css: [
     '/assets/css/style.css',
     "bootstrap/dist/css/bootstrap.min.css",
-    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   plugins: [
     '/plugins/fontawesome.js',

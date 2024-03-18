@@ -11,6 +11,9 @@ export const useTodoStore = defineStore('todo', {
     addTodo(todo: { name: string, details: string, remindDate: Date, deadline: Date, assignedStaff: string }) {
       this.todos.push(todo);
       console.log(this.todos);
+    },
+    updateTodo(index: number, newTodo: { name: string, details: string, remindDate: Date, deadline: Date, assignedStaff: string }) {
+      this.todos[index] = newTodo;
     }
   }
 });

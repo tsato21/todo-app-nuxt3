@@ -2,10 +2,10 @@
       <div class="d-flex justify-content-end me-5 mt-3">
         <!-- Button to show the modal to add new todo -->
         <button
-          class="btn btn-outline-primary"
+          class="btn btn-outline-primary mt-2"
           @click="toggleAddTodoModal"
         >
-          <i class="fas fa-info-circle"></i> Add New Todo
+          <font-awesome-icon icon="plus" /> Add New Todo
         </button>
         <AddTodoModal
           :addTodoModalActive="addTodoModalActive"
@@ -15,17 +15,17 @@
         </AddTodoModal>
       </div>
 
-      <div class="mt-5">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Details</th>
-                <th scope="col">Remind Date</th>
-                <th scope="col">Deadline</th>
-                <th scope="col">Assigned Staff</th>
-                <th></th>
-              </tr>
+      <div class="mt-2">
+          <table class="table table-hover">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col" style="width: 20%;">Name</th>
+                    <th scope="col" style="width: 20%;">Details</th>
+                    <th scope="col" style="width: 20%;">Remind Date</th>
+                    <th scope="col" style="width: 20%;">Deadline</th>
+                    <th scope="col" style="width: 10%;">Assigned Staff</th>
+                    <th style="width: 10%;"></th>
+                </tr>
             </thead>
             <tbody>
               <tr v-for="(todo, index) in todos" :key="index">
@@ -35,14 +35,14 @@
                 <td>{{ todo.deadline }}</td>
                 <td>{{ todo.assignedStaff }}</td>
                 <td>
-                  <button @click="deleteTodo(index)">Delete</button>
-                  <button @click="startUpdate(index)">Update</button>
-                  <!-- <UpdateTodoModal
-                    :addTodoModalActive="addTodoModalActive"
-                    @update:addTodoModalActive="addTodoModalActive = $event"
-                    @close-modal="toggleAddTodoModal"
-                    >
-                  </UpdateTodoModal> -->
+                  <button @click="setSelectedTodo(todo)" class="btn btn-warning btn-sm">Edit</button>
+                  <EditTodoModal
+                    :todo="selectedTodo"
+                    :editTodoModalActive="editTodoModalActive"
+                    @update:editTodoModalActive="editTodoModalActive = $event"
+                    @close-modal="toggleEditTodoModal"
+                  >
+                </EditTodoModal>
                 </td>
               </tr>
             </tbody>
@@ -60,4 +60,15 @@ const addTodoModalActive = ref(false);
 const toggleAddTodoModal = () => {
   addTodoModalActive.value = !addTodoModalActive.value;
 };
+
+const editTodoModalActive = ref(false);
+const selectedTodo = ref(null);
+const toggleEditTodoModal = () => {
+  editTodoModalActive.value = !editTodoModalActive.value;
+};
+// Define a function to update the selected todo
+function setSelectedTodo(todo) {
+  selectedTodo.value = todo;
+  editTodoModalActive.value = !editTodoModalActive.value;
+}
 </script>
