@@ -17,9 +17,6 @@
                         </NuxtLink>
                     </li>
                     <li class="nav-item">
-                        <NuxtLink to="/about" class="nav-link">
-                            <i class="fas fa-info-circle mr-2"></i>About
-                        </NuxtLink>
                     </li>
                 </ul>
             </nav>

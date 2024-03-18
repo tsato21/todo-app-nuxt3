@@ -8,9 +8,9 @@
           <i class="fas fa-info-circle"></i> Add New Todo
         </button>
         <AddTodoModal
-        :modalActive="modalActive"
-        @update:modalActive="modalActive = $event"
-        @close-modal="toggleModal"
+          :modalActive="modalActive"
+          @update:modalActive="modalActive = $event"
+          @close-modal="toggleModal"
         >
         </AddTodoModal>
       </div>
@@ -24,6 +24,7 @@
                 <th scope="col">Remind Date</th>
                 <th scope="col">Deadline</th>
                 <th scope="col">Assigned Staff</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +34,16 @@
                 <td>{{ todo.remindDate }}</td>
                 <td>{{ todo.deadline }}</td>
                 <td>{{ todo.assignedStaff }}</td>
+                <td>
+                  <button @click="deleteTodo(index)">Delete</button>
+                  <button @click="startUpdate(index)">Update</button>
+                  <!-- <UpdateTodoModal
+                    :modalActive="modalActive"
+                    @update:modalActive="modalActive = $event"
+                    @close-modal="toggleModal"
+                    >
+                  </UpdateTodoModal> -->
+                </td>
               </tr>
             </tbody>
           </table>
@@ -45,15 +56,8 @@ import { ref } from 'vue';
 import { useTodoStore } from '@/stores/todoStore';
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
-
-console.log(todos);
-
-
 const modalActive = ref(false);
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
-  console.log("Modal active is " + modalActive.value);
 };
-
-
 </script>

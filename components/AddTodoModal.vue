@@ -19,8 +19,8 @@
         <UFormGroup label="Assigned Staff" name="assignedStaff">
             <UInput v-model="todo.assignedStaff" />
         </UFormGroup>
-        <div class="d-flex justify-content-between">
-          <UButton type="submit" class="btn btn-sm btn-primary">Add Todo</UButton>
+        <div class="d-flex justify-content-end">
+          <UButton type="submit" class="btn btn-sm btn-primary me-3">Add Todo</UButton>
           <button class="btn btn-sm btn-outline-secondary" @click="$emit('close-modal')">Close</button>
         </div>
     </UForm>
