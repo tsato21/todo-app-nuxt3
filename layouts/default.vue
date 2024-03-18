@@ -23,7 +23,7 @@
         </header>
 
         <!-- output the page content -->
-        <div class="container w-75">
+        <div class="container-lg">
             <slot />
         </div>
         

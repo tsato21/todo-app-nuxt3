@@ -19,11 +19,10 @@
           <table class="table table-hover">
             <thead class="table-secondary">
                 <tr>
-                    <th scope="col" style="width: 20%;">Name</th>
-                    <th scope="col" style="width: 20%;">Details</th>
-                    <th scope="col" style="width: 20%;">Remind Date</th>
-                    <th scope="col" style="width: 20%;">Deadline</th>
-                    <th scope="col" style="width: 10%;">Assigned Staff</th>
+                    <th scope="col" style="width: 20%; vertical-align: middle;">Name</th>
+                    <th scope="col" style="width: 35%; vertical-align: middle;">Details</th>
+                    <th scope="col" style="width: 20%; vertical-align: middle;">Deadline</th>
+                    <th scope="col" style="width: 10%; vertical-align: middle;">Staff</th>
                     <th style="width: 10%;"></th>
                 </tr>
             </thead>
@@ -31,9 +30,8 @@
               <tr v-for="(todo, index) in todos" :key="index">
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.details }}</td>
-                <td>{{ todo.remindDate }}</td>
                 <td>{{ todo.deadline }}</td>
-                <td>{{ todo.assignedStaff }}</td>
+                <td>{{ todo.staff }}</td>
                 <td>
                   <button @click="setSelectedTodo(todo)" class="btn btn-warning btn-sm">Edit</button>
                   <EditTodoModal

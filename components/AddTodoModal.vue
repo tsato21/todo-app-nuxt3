@@ -4,26 +4,23 @@
   @close-modal="toggleAddTodoModal"
   >
   <UForm :schema="schema" :state="todo" class="p-3 space-y-4" @submit="addTodo">
-        <UFormGroup label="Name" name="name">
-            <UInput v-model="todo.name" class="modal-form-input"/>
-        </UFormGroup>
-        <UFormGroup label="Details" name="details">
-            <UInput v-model="todo.details" class="modal-form-input" />
-        </UFormGroup>
-        <UFormGroup label="Remind Date" name="remindDate">
-            <UInput v-model="todo.remindDate" type="date" class="modal-form-input"/>
-        </UFormGroup>
-        <UFormGroup label="Deadline" name="deadline">
-            <UInput v-model="todo.deadline" type="date" class="modal-form-input"/>
-        </UFormGroup>
-        <UFormGroup label="Assigned Staff" name="assignedStaff">
-            <UInput v-model="todo.assignedStaff" class="modal-form-input"/>
-        </UFormGroup>
-        <div class="d-flex justify-content-end">
+      <UFormGroup label="Name (required)" name="name">
+          <UInput v-model="todo.name" class="modal-form-input"/>
+      </UFormGroup>
+      <UFormGroup label="Details (required)" name="details">
+          <UInput v-model="todo.details" class="modal-form-input" />
+      </UFormGroup>
+      <UFormGroup label="Deadline (optional)" name="deadline">
+          <UInput v-model="todo.deadline" type="date" class="modal-form-input"/>
+      </UFormGroup>
+      <UFormGroup label="Staff (optional)" name="staff">
+          <UInput v-model="todo.staff" class="modal-form-input"/>
+      </UFormGroup>
+      <div class="d-flex justify-content-end">
           <UButton type="submit" class="btn btn-sm btn-primary me-3">Add Todo</UButton>
           <UButton @click="$emit('close-modal')" class="btn btn-sm btn-secondary">Close</UButton>
-        </div>
-    </UForm>
+      </div>
+  </UForm>
   </BaseModal>
 </template>
 
@@ -44,17 +41,15 @@ const todos = todoStore.todos;
 const schema = object({
   name: string().required('Required'),
   details: string().required('Required'),
-  remindDate: date().required('Required'),
-  deadline: date().required('Required'),
-  assignedStaff: string().required('Required')
+  deadline: date().transform((value, originalValue) => originalValue === "" ? null : value).nullable().default(null),
+  staff: string().nullable().default(null)
 })
 
 const todo = reactive({
   name: '',
   details: '',
-  remindDate: '',
   deadline: '',
-  assignedStaff: ''
+  staff: ''
 });
 
 function addTodo () {
