@@ -3,14 +3,14 @@
         <!-- Button to show the modal to add new todo -->
         <button
           class="btn btn-outline-primary"
-          @click="toggleModal"
+          @click="toggleAddTodoModal"
         >
           <i class="fas fa-info-circle"></i> Add New Todo
         </button>
         <AddTodoModal
-          :modalActive="modalActive"
-          @update:modalActive="modalActive = $event"
-          @close-modal="toggleModal"
+          :addTodoModalActive="addTodoModalActive"
+          @update:addTodoModalActive="addTodoModalActive = $event"
+          @close-modal="toggleAddTodoModal"
         >
         </AddTodoModal>
       </div>
@@ -38,9 +38,9 @@
                   <button @click="deleteTodo(index)">Delete</button>
                   <button @click="startUpdate(index)">Update</button>
                   <!-- <UpdateTodoModal
-                    :modalActive="modalActive"
-                    @update:modalActive="modalActive = $event"
-                    @close-modal="toggleModal"
+                    :addTodoModalActive="addTodoModalActive"
+                    @update:addTodoModalActive="addTodoModalActive = $event"
+                    @close-modal="toggleAddTodoModal"
                     >
                   </UpdateTodoModal> -->
                 </td>
@@ -56,8 +56,8 @@ import { ref } from 'vue';
 import { useTodoStore } from '@/stores/todoStore';
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
-const modalActive = ref(false);
-const toggleModal = () => {
-  modalActive.value = !modalActive.value;
+const addTodoModalActive = ref(false);
+const toggleAddTodoModal = () => {
+  addTodoModalActive.value = !addTodoModalActive.value;
 };
 </script>

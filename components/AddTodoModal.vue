@@ -1,7 +1,7 @@
 <template>
   <BaseModal
-  :modalActive="modalActive"
-  @close-modal="toggleModal"
+  :addTodoModalActive="addTodoModalActive"
+  @close-modal="toggleAddTodoModal"
   >
   <UForm :schema="schema" :state="todo" class="p-3 space-y-4" @submit="onSubmit">
         <UFormGroup label="Name" name="name">
@@ -34,9 +34,9 @@ import { reactive } from 'vue';
 import { useTodoStore } from '@/stores/todoStore';
 
 const props = defineProps({
-  modalActive: Boolean
+  addTodoModalActive: Boolean
 });
-const emit = defineEmits(['update:modalActive']);
+const emit = defineEmits(['update:addTodoModalActive']);
 
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
@@ -62,6 +62,6 @@ function onSubmit () {
   for (let key in todo) {
     todo[key] = '';
   }
-  emit('update:modalActive', false);
+  emit('update:addTodoModalActive', false);
 };
 </script>
