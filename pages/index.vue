@@ -96,6 +96,9 @@
 // import necessary components
 import { ref, computed } from 'vue';
 import { useTodoStore } from '@/stores/todoStore';
+import AddTodoModal from '@/components/Todo/AddTodoModal.vue';
+import EditTodoModal from '@/components/Todo/EditTodoModal.vue';
+import DeleteTodoModal from '@/components/Todo/DeleteTodoModal.vue';
 
 // import the state from the todoStore
 const todoStore = useTodoStore();
