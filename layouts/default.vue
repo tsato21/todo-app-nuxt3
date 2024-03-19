@@ -12,11 +12,14 @@
                
                 <ul class="nav">
                     <li class="nav-item">
-                        <NuxtLink to="/" class="nav-link active">
-                            <i class="fas fa-home mr-2"></i>Home
+                        <NuxtLink to="/manage-staff-list" class="nav-link active">
+                            <i class="fas fa-home mr-2"></i>Manage Staff List
                         </NuxtLink>
                     </li>
                     <li class="nav-item">
+                        <NuxtLink to="/" class="nav-link active">
+                            <i class="fas fa-home mr-2"></i>Home
+                        </NuxtLink>
                     </li>
                 </ul>
             </nav>

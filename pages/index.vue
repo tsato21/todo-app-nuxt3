@@ -1,19 +1,44 @@
 <template>
-      <div class="d-flex justify-content-end me-5 mt-3">
-        <!-- Button to show the modal to add new todo -->
-        <button
-          class="btn btn-outline-primary mt-2"
-          @click="toggleAddTodoModal"
-        >
-          <font-awesome-icon icon="plus" /> Add New Todo
-        </button>
+        <div class="d-flex justify-content-between me-5 mt-3">
+          <!-- Filter buttons -->
+          <div>
+            <button
+              @click="setFilter('incomplete')"
+              class="btn me-2"
+              :class="{ 'btn btn-outline-primary mt-2': currentFilter === 'incomplete', 'btn-secondary mt-2': currentFilter !== 'incomplete' }"
+            >
+              Incomplete
+            </button>
+            <button
+              @click="setFilter('all')"
+              class="btn me-2"
+              :class="{ 'btn btn-outline-primary mt-2': currentFilter === 'all', 'btn-secondary mt-2': currentFilter !== 'all' }"
+            >
+              All
+            </button>
+            <button
+              @click="setFilter('completed')"
+              class="btn me-2"
+              :class="{ 'btn btn-outline-primary mt-2': currentFilter === 'completed', 'btn-secondary mt-2': currentFilter !== 'completed' }"
+            >
+              Completed
+            </button>
+          </div>
+
+          <!-- Button to show the modal to add new todo -->
+          <button
+            class="btn btn-outline-primary mt-2"
+            @click="toggleAddTodoModal"
+          >
+            <font-awesome-icon icon="plus" /> Add New Todo
+          </button>
+        </div>
         <AddTodoModal
           :addTodoModalActive="addTodoModalActive"
           @update:addTodoModalActive="addTodoModalActive = $event"
           @close-modal="toggleAddTodoModal"
         >
         </AddTodoModal>
-      </div>
 
       <div class="mt-2">
           <table class="table table-hover">
@@ -28,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-              <tr v-for="todo in incompleteTodos" :key="todo.id" style="vertical-align: middle;">
+              <tr v-for="todo in displayedTodos" :key="todo.id" style="vertical-align: middle;">
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.details }}</td>
                 <td>{{ todo.deadline }}</td>
@@ -103,8 +128,28 @@ function showDeleteTodoModal(todo) {
   deleteTodoModalActive.value = !deleteTodoModalActive.value;
 }
 
-// Filter out the completed todos
+// Each type of todos
 const incompleteTodos = computed(() => todos.filter(todo => !todo.completed));
+const completedTodos = computed(() => todos.filter(todo => todo.completed));
+const allTodos = computed(() => todos);
+
+const currentFilter = ref('incomplete');
+const displayedTodos = computed(() => {
+  switch (currentFilter.value) {
+    case 'completed':
+      return completedTodos.value;
+    case 'all':
+      return allTodos.value;
+    case 'incomplete':
+      return incompleteTodos.value;
+    default:
+      return incompleteTodos.value;
+  }
+});
+const setFilter = (filter) => {
+  currentFilter.value = filter;
+};
+
 
 // function to toggle the completed status of a todo
 const toggleCompleted = (id) => {
