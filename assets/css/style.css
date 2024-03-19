@@ -39,3 +39,8 @@
 .modal-inner-leave-to {
   transform: scale(0.5);
 }
+
+
+.big-checkbox {
+  transform: scale(1.5);
+}

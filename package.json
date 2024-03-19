@@ -18,9 +18,11 @@
     "@pinia/nuxt": "^0.5.1",
     "@s3rver/nuxt-modal": "^1.1.5",
     "bootstrap": "^5.3.3",
+    "bootstrap-vue": "^2.23.1",
     "nuxt": "^3.10.3",
     "pinia": "^2.1.7",
     "usebootstrap": "^3.5.3",
+    "v-click-outside": "^3.2.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "yup": "^1.4.0"

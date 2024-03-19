@@ -18,29 +18,46 @@
       <div class="mt-2">
           <table class="table table-hover">
             <thead class="table-secondary">
-                <tr>
-                    <th scope="col" style="width: 20%; vertical-align: middle;">Name</th>
-                    <th scope="col" style="width: 35%; vertical-align: middle;">Details</th>
-                    <th scope="col" style="width: 20%; vertical-align: middle;">Deadline</th>
-                    <th scope="col" style="width: 10%; vertical-align: middle;">Staff</th>
-                    <th style="width: 10%;"></th>
+                <tr style="vertical-align: middle;">
+                    <th scope="col" style="width: 20%;">Name</th>
+                    <th scope="col" style="width: 25%;">Details</th>
+                    <th scope="col" style="width: 20%;">Deadline</th>
+                    <th scope="col" style="width: 10%;">Staff</th>
+                    <th style="width: 10%;">Completed</th>
+                    <th style="width: 10%;">Update/Delete</th>
                 </tr>
             </thead>
             <tbody>
-              <tr v-for="(todo, index) in todos" :key="index">
+              <tr v-for="(todo, index) in todos" :key="index" style="vertical-align: middle;">
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.details }}</td>
                 <td>{{ todo.deadline }}</td>
                 <td>{{ todo.staff }}</td>
-                <td>
-                  <button @click="setSelectedTodo(todo)" class="btn btn-warning btn-sm">Edit</button>
+                <td class="text-center">
+                  <input type="checkbox" class="big-checkbox" :checked="todo.completed" @change="todoStore.toggleCompleted(index)" />
+                </td>
+                <td class="text-center">
+                  <button @click="showEditTodoModal(todo)" class="btn btn-sm btn-warning me-1 mb-1">
+                    <font-awesome-icon icon="pen-nib"/> Edit
+                  </button>
+                  <button @click="showDeleteTodoModal(todo)" class="btn btn-sm btn-danger">
+                    <font-awesome-icon icon="trash-alt" /> Delete
+                  </button>
                   <EditTodoModal
-                    :todo="selectedTodo"
+                    :todo="selectedEditTodo"
                     :editTodoModalActive="editTodoModalActive"
                     @update:editTodoModalActive="editTodoModalActive = $event"
                     @close-modal="toggleEditTodoModal"
                   >
-                </EditTodoModal>
+                  </EditTodoModal>
+                  <DeleteTodoModal
+                    :todo="selectedDeleteTodo"
+                    :deleteTodoModalActive="deleteTodoModalActive"
+                    @update:deleteTodoModalActive="deleteTodoModalActive = $event"
+                    @close-modal="toggleDeleteTodoModal"
+                  >
+                  </DeleteTodoModal>
+
                 </td>
               </tr>
             </tbody>
@@ -50,23 +67,39 @@
 </template>
 
 <script setup="ts">
+// import necessary components
 import { ref } from 'vue';
 import { useTodoStore } from '@/stores/todoStore';
+
+// import the state from the todoStore
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
+
+// set AddTodoModal component
 const addTodoModalActive = ref(false);
 const toggleAddTodoModal = () => {
   addTodoModalActive.value = !addTodoModalActive.value;
 };
 
+// set EditTodoModal component
 const editTodoModalActive = ref(false);
-const selectedTodo = ref(null);
+const selectedEditTodo = ref(null);
 const toggleEditTodoModal = () => {
   editTodoModalActive.value = !editTodoModalActive.value;
 };
-// Define a function to update the selected todo
-function setSelectedTodo(todo) {
-  selectedTodo.value = todo;
+function showEditTodoModal(todo) {
+  selectedEditTodo.value = todo;
   editTodoModalActive.value = !editTodoModalActive.value;
 }
+// set DeleteTodoModal component
+const deleteTodoModalActive = ref(false);
+const selectedDeleteTodo = ref(null);
+const toggleDeleteTodoModal = () => {
+  deleteTodoModalActive.value = !deleteTodoModalActive.value;
+};
+function showDeleteTodoModal(todo) {
+  selectedDeleteTodo.value = todo;
+  deleteTodoModalActive.value = !deleteTodoModalActive.value;
+}
+
 </script>

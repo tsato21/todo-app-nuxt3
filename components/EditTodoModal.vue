@@ -18,7 +18,7 @@
     </UFormGroup>
     <div class="d-flex justify-content-end">
       <UButton type="submit" class="btn btn-sm btn-warning me-3">Update Todo</UButton>
-      <button class="btn btn-sm btn-outline-secondary" @click="$emit('close-modal')">Close</button>
+      <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')">Close</UButton>
     </div>
   </UForm>
   </BaseModal>
@@ -38,6 +38,13 @@ const props = defineProps({
 const emit = defineEmits(['update:editTodoModalActive']);
 
 const todoStore = useTodoStore();
+
+const schema = object({
+  name: string().required('Required'),
+  details: string().required('Required'),
+  deadline: date().transform((value, originalValue) => originalValue === "" ? null : value).nullable().default(null),
+  staff: string().nullable().default(null)
+})
 const onSubmit = () => {
   let updatedTodo = { ...props.todo };
   if (updatedTodo.deadline === "") {

@@ -1,8 +1,6 @@
 // stores/todoStore.ts
 import { defineStore } from 'pinia';
 
-
-
 export const useTodoStore = defineStore('todo', {
   state: () => ({
     todos: [] as Array<{ name: string, details: string, deadline?: Date, staff?: string }>
@@ -10,10 +8,12 @@ export const useTodoStore = defineStore('todo', {
   actions: {
     addTodo(todo: { name: string, details: string, deadline?: Date, staff?: string }) {
       this.todos.push(todo);
-      console.log(this.todos);
     },
     updateTodo(index: number, newTodo: { name: string, details: string, deadline?: Date, staff?: string }) {
-        this.todos[index] = newTodo;
+      this.todos[index] = newTodo;
+    },
+    deleteTodo(index: number) {
+      this.todos.splice(index, 1);
     }
   }
 });
