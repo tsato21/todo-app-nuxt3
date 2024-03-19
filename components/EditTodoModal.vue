@@ -33,7 +33,7 @@ import { useTodoStore } from '@/stores/todoStore';
 const props = defineProps({
   todo: Object,
   editTodoModalActive: Boolean,
-  index: Number
+  id: Number
 });
 const emit = defineEmits(['update:editTodoModalActive']);
 
@@ -53,7 +53,7 @@ const onSubmit = () => {
   if (updatedTodo.staff === "") {
     updatedTodo.staff = null;
   }
-  todoStore.updateTodo(props.index, updatedTodo);
+  todoStore.updateTodo(props.id, updatedTodo);
   emit('update:editTodoModalActive', false);
 };
 </script>

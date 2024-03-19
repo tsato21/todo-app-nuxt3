@@ -28,13 +28,13 @@
                 </tr>
             </thead>
             <tbody>
-              <tr v-for="(todo, index) in incompleteTodos" :key="index" style="vertical-align: middle;">
+              <tr v-for="todo in incompleteTodos" :key="todo.id" style="vertical-align: middle;">
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.details }}</td>
                 <td>{{ todo.deadline }}</td>
                 <td>{{ todo.staff }}</td>
                 <td class="text-center">
-                  <input type="checkbox" class="big-checkbox" :checked="todo.completed" @change="toggleCompleted(index)" />
+                  <input type="checkbox" class="big-checkbox" :checked="todo.completed" @change="toggleCompleted(todo.id)" />
                 </td>
                 <td class="text-center">
                   <button @click="showEditTodoModal(todo)" class="btn btn-sm btn-warning me-1 mb-1">
@@ -52,6 +52,7 @@
                   </EditTodoModal>
                   <DeleteTodoModal
                     :todo="selectedDeleteTodo"
+                    :id="todo.id"
                     :deleteTodoModalActive="deleteTodoModalActive"
                     @update:deleteTodoModalActive="deleteTodoModalActive = $event"
                     @close-modal="toggleDeleteTodoModal"
@@ -106,8 +107,8 @@ function showDeleteTodoModal(todo) {
 const incompleteTodos = computed(() => todos.filter(todo => !todo.completed));
 
 // function to toggle the completed status of a todo
-const toggleCompleted = (index) => {
-  todoStore.toggleCompleted(index);
-  console.log(todos.map(todo => `${todo.name} with index ${index} is ${todo.completed ? 'completed' : 'not completed'}`));
+const toggleCompleted = (id) => {
+  todoStore.toggleCompleted(id);
+  console.log(todos.map(todo => `${todo.name} with ID ${id} is ${todo.completed ? 'completed' : 'not completed'}`));
 };
 </script>

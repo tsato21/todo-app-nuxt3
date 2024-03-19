@@ -18,7 +18,7 @@ import { useTodoStore } from '@/stores/todoStore';
 const props = defineProps({
   todo: Object,
   deleteTodoModalActive: Boolean,
-  index: Number
+  id: Number
 });
 
 const emit = defineEmits(['update:deleteTodoModalActive']);
@@ -26,7 +26,8 @@ const emit = defineEmits(['update:deleteTodoModalActive']);
 const todoStore = useTodoStore();
 
 const deleteTodo = () => {
-    todoStore.deleteTodo(props.index);
+    todoStore.deleteTodo(props.id);
+    console.log(`deleteTodo: ${props.id}`);
     emit('update:deleteTodoModalActive', false);
 };
 </script>

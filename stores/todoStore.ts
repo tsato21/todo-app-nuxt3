@@ -3,20 +3,30 @@ import { defineStore } from 'pinia';
 
 export const useTodoStore = defineStore('todo', {
   state: () => ({
-    todos: [] as Array<{ name: string, details: string, deadline?: Date, staff?: string, completed?: boolean }>
+    todos: [] as Array<{ id: number, name: string, details: string, deadline?: Date, staff?: string, completed?: boolean }>,
+    nextId: 1
   }),
   actions: {
     addTodo(todo: { name: string, details: string, deadline?: Date, staff?: string, completed?: boolean }) {
-      this.todos.push(todo);
+      this.todos.push({ ...todo, id: this.nextId++ });
     },
-    updateTodo(index: number, newTodo: { name: string, details: string, deadline?: Date, staff?: string, completed?: boolean }) {
-      this.todos[index] = newTodo;
+    updateTodo(id: number, newTodo: { name: string, details: string, deadline?: Date, staff?: string, completed?: boolean }) {
+      const index = this.todos.findIndex(todo => todo.id === id);
+      if (index !== -1) {
+        this.todos[index] = { ...newTodo, id };
+      }
     },
-    deleteTodo(index: number) {
-      this.todos.splice(index, 1);
+    deleteTodo(id: number) {
+      const index = this.todos.findIndex(todo => todo.id === id);
+      if (index !== -1) {
+        this.todos.splice(index, 1);
+      }
     },
-    toggleCompleted(index: number) {
-      this.todos[index] = { ...this.todos[index], completed: !this.todos[index].completed };
+    toggleCompleted(id: number) {
+      const index = this.todos.findIndex(todo => todo.id === id);
+      if (index !== -1) {
+        this.todos[index] = { ...this.todos[index], completed: !this.todos[index].completed };
+      }
     }
   }
 });
