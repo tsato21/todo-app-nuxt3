@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
-import { object, type InferType } from 'yup'
+import { object, string, type InferType } from 'yup'
 import { reactive } from 'vue';
 import { useStaffStore } from '@/stores/staffStore';
 
