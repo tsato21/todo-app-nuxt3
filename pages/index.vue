@@ -57,7 +57,7 @@
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.details }}</td>
                 <td>{{ todo.deadline }}</td>
-                <td>{{ todo.staff }}</td>
+                <td>{{ getStaffName(todo.staff) }}</td>
                 <td class="text-center">
                   <input type="checkbox" class="big-checkbox" :checked="todo.completed" @change="toggleCompleted(todo.id)" />
                 </td>
@@ -93,16 +93,37 @@
 </template>
 
 <script setup="ts">
-// import necessary components
-import { ref, computed } from 'vue';
+// import vue composition API functions
+import { ref, computed, watch, reactive, defineProps } from 'vue';
+// import the todoStore
 import { useTodoStore } from '@/stores/todoStore';
+// import Modals for Todo CRUD since these modal files are not directly stored in "components" but in the subfolder of "components", "Todo".
 import AddTodoModal from '@/components/Todo/AddTodoModal.vue';
 import EditTodoModal from '@/components/Todo/EditTodoModal.vue';
 import DeleteTodoModal from '@/components/Todo/DeleteTodoModal.vue';
+// import the staffStore
+import { useStaffStore } from '@/stores/staffStore';
 
 // import the state from the todoStore
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
+
+const props = defineProps({
+  todo: {
+    type: Object,
+    required: true
+  }
+});
+// import the state from the staffStore
+const staffStore = useStaffStore();
+// import the staffList from the staffStore
+const staffList = computed(() => staffStore.staffList);
+
+// function to get the staff name from the staff ID
+const getStaffName = (staffId) => {
+  const staff = staffList.value.find(s => s.id === staffId);
+  return staff ? staff.name : '';
+};
 
 // set AddTodoModal component
 const addTodoModalActive = ref(false);

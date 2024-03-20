@@ -12,12 +12,12 @@
                
                 <ul class="nav">
                     <li class="nav-item">
-                        <NuxtLink to="/manage-staff-list" class="nav-link active">
-                            <i class="fas fa-home mr-2"></i>Manage Staff List
+                        <NuxtLink to="/manage-staff-list" class="nav-link">
+                            <i class="fas fa-home mr-2"></i>Staff List
                         </NuxtLink>
                     </li>
                     <li class="nav-item">
-                        <NuxtLink to="/" class="nav-link active">
+                        <NuxtLink to="/" class="nav-link">
                             <i class="fas fa-home mr-2"></i>Home
                         </NuxtLink>
                     </li>
@@ -34,7 +34,10 @@
 </template>
 
 <style scoped>
+.nav-link {
+    color: lightgray;
+}
 .router-link-exact-active {
-  color: rgb(62, 143, 118);
+    color: blue;
 }
 </style>

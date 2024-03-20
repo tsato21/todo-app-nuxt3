@@ -71,11 +71,9 @@ const newStaff = ref({ name: '',});
 
 // Add the new staff to the staff list
 const addStaff = () => {
-  console.log(`addStaff called ${newStaff.value.name}`);  
   staffStore.addStaff({
     name: newStaff.value.name,
   });
-  console.log('addStaff finished'); 
   // Reset the form
   newStaff.value = { name: '' ,};
 };

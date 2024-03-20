@@ -14,7 +14,7 @@
           <UInput v-model="todo.deadline" type="date" class="modal-form-input"/>
       </UFormGroup>
       <UFormGroup label="Staff (optional)" name="staff">
-          <UInput v-model="todo.staff" class="modal-form-input"/>
+        <USelect v-model="todo.staff" :options="staffList" option-attribute="name"/>
       </UFormGroup>
       <div class="d-flex justify-content-end">
           <UButton type="submit" class="btn btn-sm btn-primary me-3">Add Todo</UButton>
@@ -25,10 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
-import { object, string, date, type InferType } from 'yup'
-import { reactive } from 'vue';
+import { defineProps, defineEmits, watch,reactive } from 'vue';
+import { object, string, date, number, type InferType } from 'yup'
 import { useTodoStore } from '@/stores/todoStore';
+import { useStaffStore } from '@/stores/staffStore';
 
 const props = defineProps({
   addTodoModalActive: Boolean
@@ -38,11 +38,17 @@ const emit = defineEmits(['update:addTodoModalActive']);
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
 
+const staffStore = useStaffStore();
+const staffList = computed(() => staffStore.staffList.map(staff => ({
+  name: staff.name,
+  value: staff.id
+})));
+
 const schema = object({
   name: string().required('Required'),
   details: string().required('Required'),
   deadline: date().transform((value, originalValue) => originalValue === "" ? null : value).nullable().default(null),
-  staff: string().nullable().default(null)
+  staff: number().transform((value, originalValue) => originalValue === "" ? null : value).nullable().default(null),
 })
 
 const todo = reactive({
@@ -52,13 +58,20 @@ const todo = reactive({
   staff: ''
 });
 
-function addTodo () {
+const addTodo = () => {
   todoStore.addTodo({ ...todo }); // Create a copy of the todo object
   for (let key in todo) {
     todo[key] = '';
   }
   emit('update:addTodoModalActive', false);
 };
+
+watch(() => todo.staff, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    todo.staff = Number(newVal);
+  }
+});
+
 </script>
 <style scoped>
 
