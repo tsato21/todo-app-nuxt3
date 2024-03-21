@@ -38,3 +38,4 @@ const deleteTodo = () => {
   emit("update:deleteTodoModalActive", false);
 };
 </script>
+~/src/stores/todoStore~/src/stores/todoStore~~/stores/todoStore

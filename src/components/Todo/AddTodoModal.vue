@@ -9,29 +9,28 @@
       class="p-3 space-y-4"
       @submit="addTodo"
     >
-      <UFormGroup label="Name (required)" name="name">
-        <UInput v-model="todo.name" class="modal-form-input" />
+      <UFormGroup label="Name (required)" name="name" class="space-y-2">
+        <UInput v-model="todo.name" class="shadow border border-gray-500" />
       </UFormGroup>
-      <UFormGroup label="Details (required)" name="details">
-        <UInput v-model="todo.details" class="modal-form-input" />
+      <UFormGroup label="Details (required)" name="details" class="space-y-2">
+        <UInput v-model="todo.details" class="shadow border border-gray-500" />
       </UFormGroup>
-      <UFormGroup label="Deadline (optional)" name="deadline">
-        <UInput v-model="todo.deadline" type="date" class="modal-form-input" />
+      <UFormGroup label="Deadline (optional)" name="deadline" class="space-y-2">
+        <UInput v-model="todo.deadline" type="date" class="shadow border border-gray-500" />
       </UFormGroup>
-      <UFormGroup label="Staff (optional)" name="staff">
+      <UFormGroup label="Staff (optional)" name="staff" class="space-y-2">
         <USelect
           v-model="todo.staff"
-          :options="staffList"
+          :options="[{ id: '', name: '' }, ...staffList]"
           option-attribute="name"
+          class="shadow border border-gray-500"
         />
       </UFormGroup>
-      <div class="d-flex justify-content-end">
-        <UButton type="submit" class="btn btn-sm btn-primary me-3"
-          >Add Todo</UButton
-        >
-        <UButton @click="$emit('close-modal')" class="btn btn-sm btn-secondary"
+      <div class="flex justify-end">
+        <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
           >Close</UButton
         >
+        <UButton type="submit" class="btn btn-primary me-3">Add Todo</UButton>
       </div>
     </UForm>
   </BaseModal>
@@ -106,3 +105,4 @@ watch(
   },
 );
 </script>
+~/src/stores/todoStore~/src/stores/staffStore~/src/stores/todoStore~/src/stores/staffStore~~/stores/todoStore~~/stores/staffStore

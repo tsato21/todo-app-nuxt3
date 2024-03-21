@@ -75,7 +75,7 @@
               <UInput v-model="newStaff.name" class="modal-form-input" />
             </UFormGroup>
             <div class="d-flex justify-content-end">
-              <UButton type="submit" class="btn btn-sm btn-primary me-3"
+              <UButton type="submit" class="btn btn-sm btn-primary me-3 test"
                 >Add Staff</UButton
               >
             </div>
@@ -142,3 +142,9 @@ const showDeleteStaffModal = (staff) => {
   deleteStaffModalActive.value = !deleteStaffModalActive.value;
 };
 </script>
+
+<style scoped>
+.test {
+  color: black;
+}
+</style>~/src/stores/staffStore~/src/stores/staffStore~~/stores/staffStore

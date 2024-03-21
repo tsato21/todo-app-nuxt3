@@ -1,16 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  srcDir: "src/",
   devtools: { enabled: true },
   modules: [
     '@pinia/nuxt',
     '@nuxt/ui',
   ],
   css: [
-    '/assets/css/style.css',
+    '~/assets/css/style.css',
+    '~/assets/css/tailwind.css',
     "bootstrap/dist/css/bootstrap.min.css",
   ],
   plugins: [
-    '/plugins/fontawesome.js',
+    '~/plugins/fontawesome.js',
   ],
   app: {
     head:{
