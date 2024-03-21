@@ -9,10 +9,10 @@
       >?
     </p>
     <div class="d-flex justify-content-end">
-      <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
+      <UButton class="btn btn-sm btn-secondary me-2" @click="$emit('close-modal')"
         >Close</UButton
       >
-      <UButton @click="deleteStaff" class="btn btn-sm btn-danger me-2"
+      <UButton @click="deleteStaff" class="btn btn-sm btn-danger"
         >Yes, Delete</UButton
       >
     </div>
