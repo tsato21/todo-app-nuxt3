@@ -7,7 +7,6 @@
       :schema="schema"
       :state="staff"
       class="p-3 space-y-4"
-      @submit="updateStaff"
     >
       <h5 class="text-warning">
         <font-awesome-icon icon="pen-nib" />
@@ -48,9 +47,11 @@ const staffStore = useStaffStore();
 const schema = object({
   name: string().required("Required"),
 });
-const updateStaff = () => {
-  let updatedStaff = { ...props.staff };
-  staffStore.updateStaff(props.id, updatedStaff);
-  emit("update:editStaffModalActive", false);
-};
+
+//updateStaff is not necessary since the user's input is automatically reflected in the target staff record.
+// const updateStaff = () => {
+//   let updatedStaff = { ...props.staff };
+//   staffStore.updateStaff(props.id, updatedStaff);
+//   emit("update:editStaffModalActive", false);
+// };
 </script>

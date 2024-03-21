@@ -25,22 +25,23 @@ export const useTodoStore = defineStore("todo", {
     }) {
       this.todos.push({ ...todo, id: this.nextId++ });
     },
-    updateTodo(
-      id: number,
-      newTodo: {
-        name: string;
-        details: string;
-        deadline?: Date;
-        staff?: number;
-        completed?: boolean;
-      },
-    ) {
-      const index = this.todos.findIndex((todo) => todo.id === id);
-      if (index !== -1) {
-        //id is also included in the newTodo object to ensure that the id of the updated todo remains the same.
-        this.todos[index] = { ...newTodo, id };
-      }
-    },
+    //updateTodo is not necessary since the user's input is automatically reflected in the todos array.
+    // updateTodo(
+    //   id: number,
+    //   newTodo: {
+    //     name: string;
+    //     details: string;
+    //     deadline?: Date;
+    //     staff?: number;
+    //     completed?: boolean;
+    //   },
+    // ) {
+    //   const index = this.todos.findIndex((todo) => todo.id === id);
+    //   if (index !== -1) {
+    //     //id is also included in the newTodo object to ensure that the id of the updated todo remains the same.
+    //     this.todos[index] = { ...newTodo, id };
+    //   }
+    // },
     deleteTodo(id: number) {
       const index = this.todos.findIndex((todo) => todo.id === id);
       if (index !== -1) {

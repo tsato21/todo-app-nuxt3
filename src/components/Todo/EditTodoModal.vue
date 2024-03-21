@@ -7,7 +7,6 @@
       :schema="schema"
       :state="todo"
       class="p-3 space-y-4"
-      @submit="updateTodo"
     >
       <h5 class="text-warning">
         <font-awesome-icon icon="pen-nib" />
@@ -94,9 +93,10 @@ const schema = object({
     .default(null),
 });
 
-const updateTodo = () => {
-  let updatedTodo = { ...props.todo.value };
-  todoStore.updateTodo(props.id, updatedTodo);
-  emit("update:editTodoModalActive", false);
-};
+//updateTodo is not necessary since the user's input is automatically reflected in the target todo record.
+// const updateTodo = () => {
+//   let updatedTodo = { ...props.todo.value };
+//   todoStore.updateTodo(props.id, updatedTodo);
+//   emit("update:editTodoModalActive", false);
+// };
 </script>

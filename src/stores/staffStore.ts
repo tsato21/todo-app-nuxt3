@@ -11,12 +11,13 @@ export const useStaffStore = defineStore("staff", {
     addStaff(staff: { name: string }) {
       this.staffList.push({ ...staff, id: this.nextId++ });
     },
-    updateStaff(id: number, newStaff: { name: string }) {
-      const index = this.staffList.findIndex((staff) => staff.id === id);
-      if (index !== -1) {
-        this.staffList[index] = { ...newStaff, id };
-      }
-    },
+    //updateStaff is not necessary since the user's input is automatically reflected in the staffList array.
+    // updateStaff(id: number, newStaff: { name: string }) {
+    //   const index = this.staffList.findIndex((staff) => staff.id === id);
+    //   if (index !== -1) {
+    //     this.staffList[index] = { ...newStaff, id };
+    //   }
+    // },
     deleteStaff(id: number) {
       const index = this.staffList.findIndex((staff) => staff.id === id);
       if (index !== -1) {
