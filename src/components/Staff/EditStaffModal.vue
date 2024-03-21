@@ -9,16 +9,23 @@
       class="p-3 space-y-4"
       @submit="updateStaff"
     >
+      <h5 class="text-warning">
+        <font-awesome-icon icon="pen-nib" />
+        Edit Staff
+      </h5>
       <UFormGroup label="Name (required)" name="name">
-        <UInput v-model="staff.name" />
+        <UInput
+          v-model="staff.name"
+          class="shadow border border-gray-500 ps-1 w-full"
+        />
       </UFormGroup>
       <div class="d-flex justify-content-end">
-        <UButton type="submit" class="btn btn-sm btn-warning me-3"
-          >Update Staff</UButton
-        >
         <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
           >Close</UButton
         >
+      </div>
+      <div class="text-muted text-end">
+        * By clicking `Close`, the todo is automatically updated.
       </div>
     </UForm>
   </BaseModal>
@@ -47,4 +54,3 @@ const updateStaff = () => {
   emit("update:editStaffModalActive", false);
 };
 </script>
-~/src/stores/staffStore~/src/stores/staffStore~~/stores/staffStore

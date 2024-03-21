@@ -9,31 +9,48 @@
       class="p-3 space-y-4"
       @submit="updateTodo"
     >
+      <h5 class="text-warning">
+        <font-awesome-icon icon="pen-nib" />
+        Edit Todo
+      </h5>
       <UFormGroup label="Name (required)" name="name">
-        <UInput v-model="todo.name" />
+        <UInput
+          v-model="todo.name"
+          class="shadow border border-gray-500 ps-1 w-full"
+        />
       </UFormGroup>
       <UFormGroup label="Details (required)" name="details">
-        <UInput v-model="todo.details" />
+        <UInput
+          v-model="todo.details"
+          class="shadow border border-gray-500 ps-1 w-full"
+        />
       </UFormGroup>
       <UFormGroup label="Deadline (optional)" name="deadline">
-        <UInput v-model="todo.deadline" type="date" />
+        <UInput
+          v-model="todo.deadline"
+          type="date"
+          class="shadow border border-gray-500 ps-1 w-full"
+        />
       </UFormGroup>
       <UFormGroup label="Staff (optional)" name="staff">
         <!-- @update: Listening for the 'update:modelValue' event. When this event is emitted, the 'staff' property of the 'todo' object is updated with the new value, converted to a number. -->
         <USelect
           v-model="todo.staff"
-          :options="staffList"
+          :options="[{ id: '', name: '' }, ...staffList]"
           option-attribute="name"
           @update:modelValue="(value) => (todo.staff = Number(value))"
+          class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
       <div class="d-flex justify-content-end">
-        <UButton type="submit" class="btn btn-sm btn-warning me-3"
-          >Update Todo</UButton
-        >
-        <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
+        <UButton
+          class="btn btn-sm btn-secondary me-2"
+          @click="$emit('close-modal')"
           >Close</UButton
         >
+      </div>
+      <div class="text-muted text-end">
+        * By clicking `Close`, the todo is automatically updated.
       </div>
     </UForm>
   </BaseModal>
@@ -83,4 +100,3 @@ const updateTodo = () => {
   emit("update:editTodoModalActive", false);
 };
 </script>
-~/src/stores/todoStore~/src/stores/staffStore~/src/stores/todoStore~/src/stores/staffStore~~/stores/todoStore~~/stores/staffStore

@@ -72,10 +72,13 @@
             @submit="addStaff"
           >
             <UFormGroup label="Name" name="name">
-              <UInput v-model="newStaff.name" class="modal-form-input" />
+              <UInput
+                v-model="newStaff.name"
+                class="shadow border border-gray-500 ps-1 w-full"
+              />
             </UFormGroup>
             <div class="d-flex justify-content-end">
-              <UButton type="submit" class="btn btn-sm btn-primary me-3 test"
+              <UButton type="submit" class="btn btn-sm btn-primary"
                 >Add Staff</UButton
               >
             </div>
@@ -141,10 +144,9 @@ const showDeleteStaffModal = (staff) => {
   selectedDeleteStaff.value = staff;
   deleteStaffModalActive.value = !deleteStaffModalActive.value;
 };
-</script>
 
-<style scoped>
-.test {
-  color: black;
-}
-</style>~/src/stores/staffStore~/src/stores/staffStore~~/stores/staffStore
+//Set the tab of this page
+useHead({
+  title: "Staff List",
+});
+</script>

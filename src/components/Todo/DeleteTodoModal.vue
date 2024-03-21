@@ -9,11 +9,13 @@
       >?
     </p>
     <div class="d-flex justify-content-end">
-      <UButton @click="deleteTodo" class="btn btn-sm btn-danger me-2"
-        >Yes, Delete</UButton
-      >
-      <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
+      <UButton
+        class="btn btn-sm btn-secondary me-2"
+        @click="$emit('close-modal')"
         >Close</UButton
+      >
+      <UButton @click="deleteTodo" class="btn btn-sm btn-danger"
+        >Yes, Delete</UButton
       >
     </div>
   </BaseModal>
@@ -38,4 +40,3 @@ const deleteTodo = () => {
   emit("update:deleteTodoModalActive", false);
 };
 </script>
-~/src/stores/todoStore~/src/stores/todoStore~~/stores/todoStore

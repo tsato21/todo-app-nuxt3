@@ -18,5 +18,3 @@ defineProps({
   modalActive: Boolean,
 });
 </script>
-
-<style scoped></style>

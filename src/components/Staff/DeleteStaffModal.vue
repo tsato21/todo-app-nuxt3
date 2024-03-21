@@ -9,11 +9,11 @@
       >?
     </p>
     <div class="d-flex justify-content-end">
-      <UButton @click="deleteStaff" class="btn btn-sm btn-danger me-2"
-        >Yes, Delete</UButton
-      >
       <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
         >Close</UButton
+      >
+      <UButton @click="deleteStaff" class="btn btn-sm btn-danger me-2"
+        >Yes, Delete</UButton
       >
     </div>
   </BaseModal>

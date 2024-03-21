@@ -27,6 +27,7 @@
     "usebootstrap": "^3.5.3",
     "v-click-outside": "^3.2.0",
     "vue": "^3.4.21",
+    "vue-meta": "^2.4.0",
     "vue-router": "^4.3.0",
     "yup": "^1.4.0"
   },

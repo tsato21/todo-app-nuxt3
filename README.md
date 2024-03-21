@@ -6,14 +6,14 @@
 1. VS Codeのターミナルを開き、リポジトリのクローンを作成します。
 
 ```bash
-cd あなたのディレクトリへのパス
+cd path/to/your/directory
 git clone https://github.com/tsato21/todo-app-nuxt3.git
 ```
 
 2. リポジトリのフォルダにアクセスします。
 
 ```bash
-cd path/to/your/directory
+cd todo-app-nuxt3
 ```
 
 3. Node Package Managerをインストールします。
@@ -27,35 +27,17 @@ npm install
 ```bash
 npm run dev
 ```
+5. 参加に対して、"⚫︎ Yes"を選択。(表示された場合のみ)
+
+```bash
+❯ Are you interested in participating?
+● Yes / ○ No
+```
 
 5. このアプリのホームページにアクセスします。( `http://localhost:3000` )
 
 
 ## 使用法
-
-### スタッフリストの管理
-特定のスタッフにTodoを割り当てたい場合は、この機能を使用します。
-* Todoの追加/編集画面内のスタッフのドロップダウンリストに反映されます。
-* Navbarの"Staff List"をクリックして該当ページにアクセス。
-
-#### スタッフの追加
-1. スタッフ名を入力し、"Add Staff" をクリックします。
-![Add Staff UI](/docs/assets/add-staff-ui.png)
-2. 追加されたスタッフは自動的にスタッフリストテーブルに表示されます。
-
-#### スタッフ名の更新
-1. 特定のスタッフの "Edit" をクリックします。
-2. スタッフ名を変更し、更新画面で "Update Staff" をクリックします。
-![Edit Staff UI](/docs/assets/edit-staff-ui.png)
-3. テーブル内のスタッフ名が自動的に変更されます。
-    * この更新はTodoリストテーブルのスタッフ情報にも自動反映されます。
-
-#### スタッフの削除
-1. 特定のスタッフの "Delete" をクリックします。
-2. 確認画面で "Yes, Delete" をクリックします。
-![Delete Staff UI](/docs/assets/delete-staff-ui.png)
-3. テーブル内のスタッフ情報が自動的に削除されます。
-    * この削除はTodoリストテーブルのスタッフ情報に反映されます。
 
 
 ### Todoリストの管理
@@ -68,11 +50,11 @@ Todoの追加、更新、削除、完了状態の管理、及び完了状態に�
 ![Add Todo UI](/docs/assets/add-todo-ui.png)
 3. 新しいTodoが自動的にTodoリストに追加されます。
 
-#### Todoの更新
-1. 更新したいTodoの "Edit" ボタンをクリックします。
-2. 変更画面でTodoの詳細を変更し、 "Update Todo" をクリックします。
+#### Todoの編集
+1. 編集したいTodoの "Edit" ボタンをクリックします。
+2. 編集画面でTodoの詳細を変更し、 "Close" をクリックします。
 ![Edit Todo UI](/docs/assets/edit-todo-ui.png)
-3. 更新されたTodoが自動的にTodoリストに反映されます。
+3. 編集情報は自動的にTodoリストに反映されます。
 
 #### Todoの削除
 1. 削除したいTodoの "Delete" ボタンをクリックします。
@@ -91,24 +73,26 @@ Todoの追加、更新、削除、完了状態の管理、及び完了状態に�
 ![Status Filter UI](/docs/assets/status-filter-ui.png)
 
 
-## 現行アプリの課題
+### スタッフリストの管理
+特定のスタッフにTodoを割り当てたい場合は、この機能を使用します。
+* Todoの追加/編集画面内のスタッフのドロップダウンリストに反映されます。
+* Navbarの"Staff List"をクリックして該当ページにアクセス。
 
-### UForm内の要素のスタイルが昼と夜で変わる
-日中は、UForm内のUI（UInputやUButtonなど）が正常に動作します。（下記参照）
-![Show daytime UForm Contents](/docs/assets/daytime-form-ui.png)
-しかし、夜になると、スタイルが自動的に変わり、ユーザーが入力しにくいUIになります。（下記参照）
-![Show evening edit/delete button UI](/docs/assets/evening-form-ui.png)
-この課題については、今後修正予定です。
+#### スタッフの追加
+1. スタッフ名を入力し、"Add Staff" をクリックします。
+![Add Staff UI](/docs/assets/add-staff-ui.png)
+2. 追加されたスタッフは自動的にスタッフリストテーブルに表示されます。
 
-### 編集/削除ボタンのドロップダウンスタイルの設定
-理想のUIは以下の通りで、これはBootstrapのドロップダウンを使用しています。
-![Show desired edit/delete button UI](/docs/assets/desired-update-delete-ui.png)
+#### スタッフ名の編集
+1. 特定のスタッフの "Edit" をクリックします。
+2. 編集画面でスタッフ名を変更し、 "Close" をクリックします。
+![Edit Staff UI](/docs/assets/edit-staff-ui.png)
+3. テーブル内のスタッフ名が自動的に更新されます。
+    * この更新はTodoリストテーブルのスタッフ情報にも自動反映されます。
 
-しかし、現在のUIでは、ドロップダウンメニューは使用されておらず、表示に課題が残っています。（下記参照）
-![Show current edit/delete button UI](/docs/assets/current-update-delete-ui.png)
-この課題については、今後修正予定です。
-
-
-## 今後の作業
-
-上記の課題を含めた当該アプリの改善点について、修正する予定です。
+#### スタッフの削除
+1. 特定のスタッフの "Delete" をクリックします。
+2. 確認画面で "Yes, Delete" をクリックします。
+![Delete Staff UI](/docs/assets/delete-staff-ui.png)
+3. テーブル内のスタッフ情報が自動的に削除されます。
+    * この削除はTodoリストテーブルのスタッフ情報に反映されます。
