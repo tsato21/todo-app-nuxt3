@@ -28,6 +28,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4"
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "prettier": "3.2.5"
   }
 }
