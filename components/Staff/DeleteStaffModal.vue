@@ -12,7 +12,6 @@
   </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useStaffStore } from '@/stores/staffStore';
 
 const props = defineProps({
@@ -27,7 +26,6 @@ const staffStore = useStaffStore();
 
 const deleteStaff = () => {
     staffStore.deleteStaff(props.id);
-    console.log(`deleteStaff: ${props.id}`);
     emit('update:deleteStaffModalActive', false);
 };
 </script>

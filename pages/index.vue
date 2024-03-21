@@ -1,6 +1,6 @@
 <template>
         <div class="d-flex justify-content-between me-5 mt-3">
-          <!-- Filter buttons -->
+          <!-- Status filter buttons -->
           <div>
             <button
               @click="setFilter('incomplete')"
@@ -33,13 +33,15 @@
             <font-awesome-icon icon="plus" /> Add New Todo
           </button>
         </div>
+        <!-- AddTodoModal component, which is shown or hidden based on the value of addTodoModalActive -->
         <AddTodoModal
           :addTodoModalActive="addTodoModalActive"
           @update:addTodoModalActive="addTodoModalActive = $event"
           @close-modal="toggleAddTodoModal"
         >
         </AddTodoModal>
-
+      
+      <!-- Table to display the todos -->
       <div class="mt-2">
           <table class="table table-hover">
             <thead class="table-secondary">
@@ -68,6 +70,7 @@
                   <button @click="showDeleteTodoModal(todo)" class="btn btn-sm btn-danger">
                     <font-awesome-icon icon="trash-alt" /> Delete
                   </button>
+                  <!-- EditTodoModal component, which is shown or hidden based on the value of editTodoModalActive -->
                   <EditTodoModal
                     :todo="selectedEditTodo"
                     :editTodoModalActive="editTodoModalActive"
@@ -75,6 +78,7 @@
                     @close-modal="toggleEditTodoModal"
                   >
                   </EditTodoModal>
+                  <!-- DeleteTodoModal component, which is shown or hidden based on the value of deleteTodoModalActive -->
                   <DeleteTodoModal
                     :todo="selectedDeleteTodo"
                     :id="todo.id"
@@ -93,71 +97,81 @@
 </template>
 
 <script setup="ts">
-// import vue composition API functions
+// Import the ref, computed, watch, and reactive functions from Vue
 import { ref, computed, watch, reactive, defineProps } from 'vue';
-// import the todoStore
+
+// Import the useTodoStore function from the todoStore
 import { useTodoStore } from '@/stores/todoStore';
-// import Modals for Todo CRUD since these modal files are not directly stored in "components" but in the subfolder of "components", "Todo".
+
+// Import Modals for Todo CRUD since these modal files are not directly stored in "components" but in "Todo", which is the subfolder of "components".
 import AddTodoModal from '@/components/Todo/AddTodoModal.vue';
 import EditTodoModal from '@/components/Todo/EditTodoModal.vue';
 import DeleteTodoModal from '@/components/Todo/DeleteTodoModal.vue';
-// import the staffStore
+
+// Import the useStaffStore function from the staffStore
 import { useStaffStore } from '@/stores/staffStore';
 
-// import the state from the todoStore
+// Set the todoStore and todos from the useTodoStore to list all todos in the Todo table
 const todoStore = useTodoStore();
 const todos = todoStore.todos;
 
-const props = defineProps({
-  todo: {
-    type: Object,
-    required: true
-  }
-});
-// import the state from the staffStore
+// Set the staffStore and staffList from the useStaffStore function, which is used for getStaffName function 
 const staffStore = useStaffStore();
-// import the staffList from the staffStore
 const staffList = computed(() => staffStore.staffList);
 
-// function to get the staff name from the staff ID
+// Set getStaffName to get the staff name from the staffList
 const getStaffName = (staffId) => {
+  // Find the matching staff from the staffList based on the staffId
   const staff = staffList.value.find(s => s.id === staffId);
   return staff ? staff.name : '';
 };
 
-// set AddTodoModal component
+// Set addTodoModalActive, which is a flag to show or hide the AddTodoModal component
 const addTodoModalActive = ref(false);
+// Set toggleAddTodoModal, which is used for close button (hide the AddTodoModal component)
 const toggleAddTodoModal = () => {
   addTodoModalActive.value = !addTodoModalActive.value;
 };
 
-// set EditTodoModal component
+// Set editTodoModalActive, which is a flag to show or hide the EditTodoModal component
 const editTodoModalActive = ref(false);
+// Set selectedEditTodo, which is used to store the selected todo to be edited. The default value is null since expected value is an object.
 const selectedEditTodo = ref(null);
+// Set toggleEditTodoModal, which is used for close button (hide the EditTodoModal component)
 const toggleEditTodoModal = () => {
   editTodoModalActive.value = !editTodoModalActive.value;
 };
-function showEditTodoModal(todo) {
+// Set showEditTodoModal to show the EditTodoModal component with the selected todo
+const showEditTodoModal = (todo) => {
   selectedEditTodo.value = todo;
   editTodoModalActive.value = !editTodoModalActive.value;
 }
-// set DeleteTodoModal component
+
+// Set deleteTodoModalActive, which is a flag to show or hide the DeleteTodoModal component
 const deleteTodoModalActive = ref(false);
+// Set selectedDeleteTodo, which is used to store the selected todo to be deleted
 const selectedDeleteTodo = ref(null);
+// Set toggleDeleteTodoModal, which is used for close button (hide the DeleteTodoModal component)
 const toggleDeleteTodoModal = () => {
   deleteTodoModalActive.value = !deleteTodoModalActive.value;
 };
-function showDeleteTodoModal(todo) {
+// Set showDeleteTodoModal to show the DeleteTodoModal component with the selected todo
+const showDeleteTodoModal = (todo) => {
   selectedDeleteTodo.value = todo;
   deleteTodoModalActive.value = !deleteTodoModalActive.value;
 }
 
-// Each type of todos
+// Set incompleteTodos, completedTodos, and allTodos to filter the todos based on their completed status
 const incompleteTodos = computed(() => todos.filter(todo => !todo.completed));
 const completedTodos = computed(() => todos.filter(todo => todo.completed));
 const allTodos = computed(() => todos);
-
+// Set currentFilter, which is a flag to filter the todos. The default value is 'incomplete'
 const currentFilter = ref('incomplete');
+// Set setFilter to set the currentFilter
+const setFilter = (filter) => {
+  currentFilter.value = filter;
+};
+// Set displayedTodos to display the todos based on the currentFilter (set by setFilter)
 const displayedTodos = computed(() => {
   switch (currentFilter.value) {
     case 'completed':
@@ -170,14 +184,9 @@ const displayedTodos = computed(() => {
       return incompleteTodos.value;
   }
 });
-const setFilter = (filter) => {
-  currentFilter.value = filter;
-};
 
-
-// function to toggle the completed status of a todo
+// Set toggleCompleted to toggle the completed status of the todo based on the todo id
 const toggleCompleted = (id) => {
   todoStore.toggleCompleted(id);
-  console.log(todos.map(todo => `${todo.name} with ID ${id} is ${todo.completed ? 'completed' : 'not completed'}`));
 };
 </script>

@@ -12,7 +12,6 @@
   </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useTodoStore } from '@/stores/todoStore';
 
 const props = defineProps({

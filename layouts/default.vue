@@ -34,9 +34,17 @@
 </template>
 
 <style scoped>
+/* 
+.nav-link class:
+This class is used when the style navigation links but the route is not accessed. The color of the text for these links is set to light gray.
+*/
 .nav-link {
     color: lightgray;
 }
+/* 
+.router-link-exact-active class:
+This class is automatically added by Vue Router to the active route. The color of the text for the active link is set to blue.
+*/
 .router-link-exact-active {
     color: blue;
 }

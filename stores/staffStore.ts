@@ -1,6 +1,7 @@
-// stores/staffStore.ts
+// Importing the defineStore function from the pinia library
 import { defineStore } from 'pinia';
 
+// Defining a store named 'staff' using the defineStore function
 export const useStaffStore = defineStore('staff', {
   state: () => ({
     staffList: [] as Array<{ id: number, name: string}>,

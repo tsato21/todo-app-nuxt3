@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="d-flex justify-content-between">
-      <!-- Staff list -->
       <div class="mt-3 me-5">
+        <!-- Staff list table (left side)-->
         <h4 class="mt-1">List of Staff</h4>
         <table class="table text-center" style="vertical-align: middle; width:400px">
           <thead class="table-hover">
@@ -19,6 +19,7 @@
               <td>
                 <button @click="showEditStaffModal(staff)" class="btn btn-sm btn-warning me-2">Edit</button>
                 <button @click="showDeleteStaffModal(staff)" class="btn btn-sm btn-danger">Delete</button>
+                <!-- EditStaffModal component for editing a staff member -->
                 <EditStaffModal
                     :staff="selectedEditStaff"
                     :editStaffModalActive="editStaffModalActive"
@@ -26,6 +27,7 @@
                     @close-modal="toggleEditStaffModal"
                   >
                   </EditStaffModal>
+                <!-- DeleteStaffModal component for deleting a staff member -->
                   <DeleteStaffModal
                     :staff="selectedDeleteStaff"
                     :id="staff.id"
@@ -40,11 +42,11 @@
         </table>
       </div>
 
-      <!-- Form to add new staff -->
+      <!-- Form to add new staff (right side)-->
       <div class="card mt-3" style="width: 18rem; height: 200px;">
         <div class="card-body">
           <h5 class="card-title">Add New Staff</h5>
-          <UForm :state="newStaff" class="p-3 space-y-4" @submit="addStaff">
+          <UForm :schema="schema" :state="newStaff" class="p-3 space-y-4" @submit="addStaff">
             <UFormGroup label="Name" name="name">
               <UInput v-model="newStaff.name" class="modal-form-input"/>
             </UFormGroup>
@@ -59,48 +61,57 @@
 </template>
 
 <script setup="ts">
-// import { ref } from 'vue';
-import { ref, watch } from 'vue';
+// Import necessary functions and components
+import { ref} from 'vue';
 import { useStaffStore } from '@/stores/staffStore';
 import EditStaffModal from '@/components/Staff/EditStaffModal.vue';
 import DeleteStaffModal from '@/components/Staff/DeleteStaffModal.vue';
 
+// Import the schema and validation functions from the yup library
+import { object, string } from 'yup';
+const schema = object({
+  name: string().required('Required'),
+})
+
+// Use the useStaffStore to get the staff list for staff list table
 const staffStore = useStaffStore();
 const staffList = staffStore.staffList;
+// Create a new staff object to receive the form input
 const newStaff = ref({ name: '',});
 
-// Add the new staff to the staff list
+// Set addStaff to add a new staff member
 const addStaff = () => {
   staffStore.addStaff({
     name: newStaff.value.name,
   });
-  // Reset the form
+  // Reset the form value after adding a new staff member
   newStaff.value = { name: '' ,};
 };
 
-// watch(staffList, (newVal) => {
-//   const names = newVal.map(staff => staff.name);
-//   console.log('staff names:', names);
-// });
-
-// set EditStaffModal component
+// Set editStaffModalActive, which is a flag to show or hide the EditStaffModal component
 const editStaffModalActive = ref(false);
+// Set selectedEditStaff, which is used to store the selected staff to be edited
 const selectedEditStaff = ref(null);
+// Set toggleEditStaffModal, which is used for close button (hide the EditStaffModal component)
 const toggleEditStaffModal = () => {
   editStaffModalActive.value = !editStaffModalActive.value;
 };
-function showEditStaffModal(staff) {
+// Set showEditStaffModal to show the EditStaffModal component with the selected staff
+const showEditStaffModal = (staff) => {
   selectedEditStaff.value = staff;
   editStaffModalActive.value = !deleteStaffModalActive.value;
 }
 
-// set DeleteStaffModal component
+// Set deleteStaffModalActive, which is a flag to show or hide the DeleteStaffModal component
 const deleteStaffModalActive = ref(false);
+// Set selectedDeleteStaff, which is used to store the selected staff to be deleted
 const selectedDeleteStaff = ref(null);
+// Set toggleDeleteStaffModal, which is used for close button (hide the DeleteStaffModal component)
 const toggleDeleteStaffModal = () => {
   deleteStaffModalActive.value = !deleteStaffModalActive.value;
 };
-function showDeleteStaffModal(staff) {
+// Set showDeleteStaffModal to show the DeleteStaffModal component with the selected staff
+const showDeleteStaffModal = (staff) => {
   selectedDeleteStaff.value = staff;
   deleteStaffModalActive.value = !deleteStaffModalActive.value;
 }

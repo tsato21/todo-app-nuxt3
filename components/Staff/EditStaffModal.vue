@@ -17,8 +17,7 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
-import { object, string, date, number, type InferType } from 'yup'
-import { reactive } from 'vue';
+import { object, string, type InferType } from 'yup';
 import { useStaffStore } from '@/stores/staffStore';
 
 const props = defineProps({
@@ -35,15 +34,6 @@ const schema = object({
 })
 const updateStaff = () => {
   let updatedStaff = { ...props.staff };
-  if (updatedStaff.deadline === "") {
-    updatedStaff.deadline = null;
-  }
-  if (updatedStaff.staff === "") {
-    updatedStaff.staff = null;
-  } else if (typeof updatedStaff.staff === 'string') {
-    updatedStaff.staff = Number(updatedStaff.staff);
-  }
-  console.log(`updatedStaff: ${updatedStaff}`);
   staffStore.updateStaff(props.id, updatedStaff);
   emit('update:editStaffModalActive', false);
 };
