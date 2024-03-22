@@ -68,8 +68,6 @@ const props = defineProps({
   id: Number,
 });
 
-const emit = defineEmits(["update:editTodoModalActive"]);
-
 const todoStore = useTodoStore();
 
 const staffStore = useStaffStore();
@@ -93,7 +91,8 @@ const schema = object({
     .default(null),
 });
 
-//updateTodo is not necessary since the user's input is automatically reflected in the target todo record.
+//defineEmits(["update:editTodoModalActive"]) and updateTodo is not necessary since the user's input is automatically reflected in the target todo record.
+// const emit = defineEmits(["update:editTodoModalActive"]);
 // const updateTodo = () => {
 //   let updatedTodo = { ...props.todo.value };
 //   todoStore.updateTodo(props.id, updatedTodo);

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container w-75">
     <div class="d-flex justify-content-between">
       <div class="mt-3 me-5">
         <!-- Staff list table (left side)-->
@@ -37,10 +37,10 @@
                   Delete
                 </button>
                 <!-- EditStaffModal component for editing a staff member -->
+                <!-- @update:editStaffModalActive="editStaffModalActive = $event" was originally put within EditStaffModal tag =>Not needed since the user's input is automatically reflected in the target staff record.-->
                 <EditStaffModal
                   :staff="selectedEditStaff"
                   :editStaffModalActive="editStaffModalActive"
-                  @update:editStaffModalActive="editStaffModalActive = $event"
                   @close-modal="toggleEditStaffModal"
                 >
                 </EditStaffModal>

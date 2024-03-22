@@ -40,6 +40,9 @@
     </button>
   </div>
   <!-- AddTodoModal component, which is shown or hidden based on the value of addTodoModalActive -->
+  <!-- The colon (:) is shorthand for v-bind. It binds the 'addTodoModalActive' prop to the 'addTodoModalActive' data property of the parent component. -->
+  <!-- The @ symbol is shorthand for v-on. It listens for the 'update:addTodoModalActive' event and updates the 'addTodoModalActive' data property with the new value ($event). -->
+  <!-- Listens for the 'close-modal' event and calls the 'toggleAddTodoModal' method when the event is emitted. -->
   <AddTodoModal
     :addTodoModalActive="addTodoModalActive"
     @update:addTodoModalActive="addTodoModalActive = $event"
@@ -92,10 +95,10 @@
               <font-awesome-icon icon="trash-alt" /> Delete
             </button>
             <!-- EditTodoModal component, which is shown or hidden based on the value of editTodoModalActive -->
+            <!-- @update:editTodoModalActive="editTodoModalActive = $event" was originally put within EditTodoModal tag =>Not needed since the user's input is automatically reflected in the target todo record.-->
             <EditTodoModal
               :todo="selectedEditTodo"
               :editTodoModalActive="editTodoModalActive"
-              @update:editTodoModalActive="editTodoModalActive = $event"
               @close-modal="toggleEditTodoModal"
             >
             </EditTodoModal>

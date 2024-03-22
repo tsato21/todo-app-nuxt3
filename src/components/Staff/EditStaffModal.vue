@@ -40,7 +40,6 @@ const props = defineProps({
   editStaffModalActive: Boolean,
   id: Number,
 });
-const emit = defineEmits(["update:editStaffModalActive"]);
 
 const staffStore = useStaffStore();
 
@@ -48,7 +47,8 @@ const schema = object({
   name: string().required("Required"),
 });
 
-//updateStaff is not necessary since the user's input is automatically reflected in the target staff record.
+//defineEmits(["update:editStaffModalActive"]) and updateStaff is not necessary since the user's input is automatically reflected in the target staff record.
+// const emit = defineEmits(["update:editStaffModalActive"]);
 // const updateStaff = () => {
 //   let updatedStaff = { ...props.staff };
 //   staffStore.updateStaff(props.id, updatedStaff);
