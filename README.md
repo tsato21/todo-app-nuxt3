@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-5. 参加に対して、"⚫︎ Yes"を選択。(表示された場合のみ)
+5. (表示された場合のみ)　参加に対して、"⚫︎ Yes"を選択。
 
 ```bash
 ❯ Are you interested in participating?

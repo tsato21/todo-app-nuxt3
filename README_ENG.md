@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-5. Choose "⚫︎ Yes" for participation. (Only when displayed)
+5. (Only when displayed) Choose "⚫︎ Yes" for participation.
 ```bash
 ❯ Are you interested in participating?
 ● Yes / ○ No
