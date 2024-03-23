@@ -7,6 +7,7 @@ export const useStaffStore = defineStore("staff", {
     staffList: [] as Array<{ id: number; name: string }>,
     nextId: 1,
   }),
+  persist: true,
   actions: {
     addStaff(staff: { name: string }) {
       this.staffList.push({ ...staff, id: this.nextId++ });

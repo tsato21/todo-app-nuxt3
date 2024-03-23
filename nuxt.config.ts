@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     "bootstrap/dist/css/bootstrap.min.css",
   ],
   plugins: [
-    '~/plugins/fontawesome.js',
+    '~/plugins/fontawesome.ts',
+    '~/plugins/pinia-persistedstate.ts', 
   ],
   app: {
     head:{

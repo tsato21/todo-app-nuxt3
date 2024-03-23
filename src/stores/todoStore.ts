@@ -14,6 +14,7 @@ export const useTodoStore = defineStore("todo", {
     }>,
     nextId: 1,
   }),
+  persist: true,
   actions: {
     //Deadline, staff, and completed are optional properties.
     addTodo(todo: {
