@@ -27,7 +27,7 @@ export default defineI18nConfig(() => ({
 
       //Form
       requiredField: '* Required Field',
-      automaticUpdate: '* By clicking `Close`, the contents will be automatically updated.',
+      automaticUpdate: '* The contents will be automatically updated in the table.',
       deleteConfirmMessage: 'Are you sure you want to delete?',
 
       //Table Headers
@@ -62,7 +62,7 @@ export default defineI18nConfig(() => ({
       
       //Form
       requiredField: '* 必須項目です',
-      automaticUpdate: '* `閉じる`をクリックすると、内容が自動的に更新されます。',
+      automaticUpdate: '* 編集内容は自動的にテーブルに更新されます。',
       deleteConfirmMessage: '削除してもよろしいですか？',
 
       //Table Headers
