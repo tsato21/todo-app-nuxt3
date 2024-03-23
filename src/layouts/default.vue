@@ -50,7 +50,42 @@
 </template>
 
 <script setup="ts">
-const { locale } = useI18n();
+// Import necessary functions from Vue and vue-i18n
+import { useI18n } from 'vue-i18n'
+import { ref, watch, onMounted } from 'vue';
+
+// Initialize the i18n plugin
+const i18n = useI18n();
+
+// Create a reactive reference for the locale, defaulting to 'ja'
+const locale = ref('ja');
+
+// When the component is mounted
+onMounted(() => {
+  // If the code is running on the client side (in the browser)
+  if (process.client) {
+    // Get the stored locale from the local storage
+    const storedLocale = localStorage.getItem('locale');
+    // If there is a stored locale
+    if (storedLocale) {
+      // Update the locale reactive reference with the stored locale
+      locale.value = storedLocale;
+      // Update the i18n locale with the stored locale
+      i18n.locale.value = storedLocale;
+    }
+  }
+});
+
+// Watch for changes in the locale reactive reference
+watch(locale, (newLocale) => {
+  // If the code is running on the client side (in the browser)
+  if (process.client) {
+    // Store the new locale in the local storage
+    localStorage.setItem('locale', newLocale);
+  }
+  // Update the i18n locale with the new locale
+  i18n.locale.value = newLocale;
+});
 </script>
 
 <style scoped>
