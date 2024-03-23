@@ -3,16 +3,16 @@
     <div class="d-flex justify-content-between">
       <div class="mt-3 me-5">
         <!-- Staff list table (left side)-->
-        <h4 class="mt-1">List of Staff</h4>
         <table
           class="table text-center"
-          style="vertical-align: middle; width: 400px"
+          style="vertical-align: middle; width: 350px"
         >
           <thead class="table-hover">
             <tr>
-              <th scope="col" style="width: 5%">ID</th>
-              <th scope="col" style="width: 40%">Name</th>
-              <th scope="col" style="width: 55%">Edit/Delete</th>
+              <th scope="col">
+                {{ $t("tableHeaderName") }}
+              </th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -21,20 +21,19 @@
               :key="staff.id"
               style="vertical-align: middle"
             >
-              <td>{{ staff.id }}</td>
               <td>{{ staff.name }}</td>
               <td>
                 <button
                   @click="showEditStaffModal(staff)"
                   class="btn btn-sm btn-warning me-2"
                 >
-                  Edit
+                  {{ $t("editButton") }}
                 </button>
                 <button
                   @click="showDeleteStaffModal(staff)"
                   class="btn btn-sm btn-danger"
                 >
-                  Delete
+                  {{ $t("deleteButton") }}
                 </button>
                 <!-- EditStaffModal component for editing a staff member -->
                 <!-- @update:editStaffModalActive="editStaffModalActive = $event" was originally put within EditStaffModal tag =>Not needed since the user's input is automatically reflected in the target staff record.-->
@@ -62,25 +61,25 @@
       </div>
 
       <!-- Form to add new staff (right side)-->
-      <div class="card mt-3" style="width: 18rem; height: 200px">
+      <div class="card mt-3" style="width: 330px; height: 200px">
         <div class="card-body">
-          <h5 class="card-title">Add New Staff</h5>
+          <h5 class="card-title">{{ $t("cardTitleAddNewStaff") }}</h5>
           <UForm
             :schema="schema"
             :state="newStaff"
             class="p-3 space-y-4"
             @submit="addStaff"
           >
-            <UFormGroup label="Name" name="name">
+            <UFormGroup :label="$t('tableHeaderName')" name="name">
               <UInput
                 v-model="newStaff.name"
                 class="shadow border border-gray-500 ps-1 w-full"
               />
             </UFormGroup>
             <div class="d-flex justify-content-end">
-              <UButton type="submit" class="btn btn-sm btn-primary"
-                >Add Staff</UButton
-              >
+              <UButton type="submit" class="btn btn-sm btn-primary">{{
+                $t("addButton")
+              }}</UButton>
             </div>
           </UForm>
         </div>

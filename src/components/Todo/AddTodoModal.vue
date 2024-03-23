@@ -9,26 +9,26 @@
       class="p-3 space-y-4"
       @submit="addTodo"
     >
-      <UFormGroup label="Name (required)" name="name">
+      <UFormGroup :label="$t('tableHeaderName') + '*'" name="name">
         <UInput
           v-model="todo.name"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
-      <UFormGroup label="Details (required)" name="details">
+      <UFormGroup :label="$t('tableHeaderDetails') + '*'" name="details">
         <UInput
           v-model="todo.details"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
-      <UFormGroup label="Deadline (optional)" name="deadline">
+      <UFormGroup :label="$t('tableHeaderDeadline')" name="deadline">
         <UInput
           v-model="todo.deadline"
           type="date"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
-      <UFormGroup label="Staff (optional)" name="staff">
+      <UFormGroup :label="$t('tableHeaderStaff')" name="staff">
         <USelect
           v-model="todo.staff"
           :options="[{ id: '', name: '' }, ...staffList]"
@@ -40,10 +40,13 @@
         <UButton
           class="btn btn-sm btn-secondary me-2"
           @click="$emit('close-modal')"
-          >Close</UButton
+          >{{ $t("closeButton") }}</UButton
         >
-        <UButton type="submit" class="btn btn-primary me-3">Add Todo</UButton>
+        <UButton type="submit" class="btn btn-primary me-3">{{
+          $t("addButton")
+        }}</UButton>
       </div>
+      <p class="text-xs text-red-500">{{ $t("requiredField") }}</p>
     </UForm>
   </BaseModal>
 </template>

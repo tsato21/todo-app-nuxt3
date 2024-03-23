@@ -3,35 +3,27 @@
     :modalActive="editTodoModalActive"
     @close-modal="toggleEditTodoModal"
   >
-    <UForm
-      :schema="schema"
-      :state="todo"
-      class="p-3 space-y-4"
-    >
-      <h5 class="text-warning">
-        <font-awesome-icon icon="pen-nib" />
-        Edit Todo
-      </h5>
-      <UFormGroup label="Name (required)" name="name">
+    <UForm :schema="schema" :state="todo" class="p-3 space-y-4">
+      <UFormGroup :label="$t('tableHeaderName') + '*'" name="name">
         <UInput
           v-model="todo.name"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
-      <UFormGroup label="Details (required)" name="details">
+      <UFormGroup :label="$t('tableHeaderDetails') + '*'" name="details">
         <UInput
           v-model="todo.details"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
-      <UFormGroup label="Deadline (optional)" name="deadline">
+      <UFormGroup :label="$t('tableHeaderDeadline')" name="deadline">
         <UInput
           v-model="todo.deadline"
           type="date"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
-      <UFormGroup label="Staff (optional)" name="staff">
+      <UFormGroup :label="$t('tableHeaderStaff')" name="staff">
         <!-- @update: Listening for the 'update:modelValue' event. When this event is emitted, the 'staff' property of the 'todo' object is updated with the new value, converted to a number. -->
         <USelect
           v-model="todo.staff"
@@ -45,12 +37,11 @@
         <UButton
           class="btn btn-sm btn-secondary me-2"
           @click="$emit('close-modal')"
-          >Close</UButton
+          >{{ $t("closeButton") }}</UButton
         >
       </div>
-      <div class="text-muted text-end">
-        * By clicking `Close`, the todo is automatically updated.
-      </div>
+      <p class="text-xs text-red-500">{{ $t("requiredField") }}</p>
+      <p class="text-xs text-muted">{{ $t("automaticUpdate") }}</p>
     </UForm>
   </BaseModal>
 </template>

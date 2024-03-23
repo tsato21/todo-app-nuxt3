@@ -3,20 +3,23 @@
     :modalActive="deleteTodoModalActive"
     @close-modal="toggleDeleteTodoModal"
   >
-    <p>
-      Are you sure you want to delete the following todo:
-      <strong>{{ todo.name }}</strong
-      >?
-    </p>
+    <div>
+      <p class="text-lg font-semibold text-gray-700">
+        {{ $t("deleteConfirmMessage") }}
+      </p>
+      <p class="text-lg font-semibold text-red-600">
+        <strong>{{ todo.name }}</strong>
+      </p>
+    </div>
     <div class="d-flex justify-content-end">
       <UButton
         class="btn btn-sm btn-secondary me-2"
         @click="$emit('close-modal')"
-        >Close</UButton
+        >{{ $t("closeButton") }}</UButton
       >
-      <UButton @click="deleteTodo" class="btn btn-sm btn-danger"
-        >Yes, Delete</UButton
-      >
+      <UButton @click="deleteTodo" class="btn btn-sm btn-danger">{{
+        $t("deleteButton")
+      }}</UButton>
     </div>
   </BaseModal>
 </template>

@@ -3,18 +3,23 @@
     :modalActive="deleteStaffModalActive"
     @close-modal="toggleDeleteStaffModal"
   >
-    <p>
-      Are you sure you want to delete the following staff:
-      <strong>{{ staff.name }}</strong
-      >?
-    </p>
+    <div>
+      <p class="text-lg font-semibold text-gray-700">
+        {{ $t("deleteConfirmMessage") }}
+      </p>
+      <p class="text-lg font-semibold text-red-600">
+        <strong>{{ staff.name }}</strong>
+      </p>
+    </div>
     <div class="d-flex justify-content-end">
-      <UButton class="btn btn-sm btn-secondary me-2" @click="$emit('close-modal')"
-        >Close</UButton
+      <UButton
+        class="btn btn-sm btn-secondary me-2"
+        @click="$emit('close-modal')"
+        >{{ $t("closeButton") }}</UButton
       >
-      <UButton @click="deleteStaff" class="btn btn-sm btn-danger"
-        >Yes, Delete</UButton
-      >
+      <UButton @click="deleteStaff" class="btn btn-sm btn-danger">{{
+        $t("deleteButton")
+      }}</UButton>
     </div>
   </BaseModal>
 </template>
@@ -37,4 +42,3 @@ const deleteStaff = () => {
   emit("update:deleteStaffModalActive", false);
 };
 </script>
-~/src/stores/staffStore~/src/stores/staffStore~~/stores/staffStore

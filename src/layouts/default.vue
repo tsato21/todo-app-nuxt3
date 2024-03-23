@@ -9,19 +9,33 @@
             to="/"
             class="text-xl font-bold text-primary text-decoration-none text-black"
           >
-            <font-awesome-icon icon="check-square" /> Todo App Nuxt3
+            <font-awesome-icon icon="check-square" /> {{ $t("navTitle") }}
           </NuxtLink>
         </h4>
 
         <ul class="nav">
           <li class="nav-item">
             <NuxtLink to="/manage-staff-list" class="nav-link">
-              <i class="fas fa-home mr-2"></i>Staff List
+              <i class="fas fa-home mr-2"></i>{{ $t("staffList") }}
             </NuxtLink>
           </li>
           <li class="nav-item">
             <NuxtLink to="/" class="nav-link">
-              <i class="fas fa-home mr-2"></i>Home
+              <i class="fas fa-home mr-2"></i> {{ $t("home") }}
+            </NuxtLink>
+          </li>
+          <li class="nav-item">
+            <NuxtLink class="nav-link d-flex align-items-center">
+              <form>
+                <select
+                  v-model="locale"
+                  class="bg-white border text-black"
+                  style="width: 120px"
+                >
+                  <option value="ja">日本語</option>
+                  <option value="en">English</option>
+                </select>
+              </form>
             </NuxtLink>
           </li>
         </ul>
@@ -34,6 +48,10 @@
     </div>
   </div>
 </template>
+
+<script setup="ts">
+const { locale } = useI18n();
+</script>
 
 <style scoped>
 /* 

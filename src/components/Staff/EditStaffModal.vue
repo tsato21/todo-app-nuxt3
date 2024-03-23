@@ -3,29 +3,22 @@
     :modalActive="editStaffModalActive"
     @close-modal="toggleEditStaffModal"
   >
-    <UForm
-      :schema="schema"
-      :state="staff"
-      class="p-3 space-y-4"
-    >
-      <h5 class="text-warning">
-        <font-awesome-icon icon="pen-nib" />
-        Edit Staff
-      </h5>
-      <UFormGroup label="Name (required)" name="name">
+    <UForm :schema="schema" :state="staff" class="p-3 space-y-4">
+      <UFormGroup :label="$t('tableHeaderName') + '*'" name="name">
         <UInput
           v-model="staff.name"
           class="shadow border border-gray-500 ps-1 w-full"
         />
       </UFormGroup>
       <div class="d-flex justify-content-end">
-        <UButton class="btn btn-sm btn-secondary" @click="$emit('close-modal')"
-          >Close</UButton
+        <UButton
+          class="btn btn-sm btn-secondary"
+          @click="$emit('close-modal')"
+          >{{ $t("closeButton") }}</UButton
         >
       </div>
-      <div class="text-muted text-end">
-        * By clicking `Close`, the todo is automatically updated.
-      </div>
+      <p class="text-xs text-red-500">{{ $t("requiredField") }}</p>
+      <p class="text-xs text-muted">{{ $t("automaticUpdate") }}</p>
     </UForm>
   </BaseModal>
 </template>

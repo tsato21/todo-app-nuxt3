@@ -10,7 +10,7 @@
           'btn-secondary mt-2': currentFilter !== 'incomplete',
         }"
       >
-        Incomplete
+        {{ $t("incomplete") }}
       </button>
       <button
         @click="setFilter('all')"
@@ -20,7 +20,7 @@
           'btn-secondary mt-2': currentFilter !== 'all',
         }"
       >
-        All
+        {{ $t("all") }}
       </button>
       <button
         @click="setFilter('completed')"
@@ -30,13 +30,12 @@
           'btn-secondary mt-2': currentFilter !== 'completed',
         }"
       >
-        Completed
+        {{ $t("complete") }}
       </button>
     </div>
-    <p>{{ $t('welcome') }}</p>
     <!-- Button to show the modal to add new todo -->
     <button class="btn btn-outline-primary mt-2" @click="toggleAddTodoModal">
-      <font-awesome-icon icon="plus" /> Add New Todo
+      <font-awesome-icon icon="plus" /> {{ $t("addButton") }}
     </button>
   </div>
   <!-- AddTodoModal component, which is shown or hidden based on the value of addTodoModalActive -->
@@ -55,12 +54,16 @@
     <table class="table table-hover">
       <thead class="table-secondary">
         <tr style="vertical-align: middle">
-          <th scope="col" style="width: 20%">Name</th>
-          <th scope="col" style="width: 25%">Details</th>
-          <th scope="col" style="width: 20%">Deadline</th>
-          <th scope="col" style="width: 10%">Staff</th>
-          <th style="width: 10%">Completed</th>
-          <th style="width: 10%">Update/Delete</th>
+          <th scope="col" style="width: 20%">{{ $t("tableHeaderName") }}</th>
+          <th scope="col" style="width: 25%">{{ $t("tableHeaderDetails") }}</th>
+          <th scope="col" style="width: 20%">
+            {{ $t("tableHeaderDeadline") }}
+          </th>
+          <th scope="col" style="width: 10%">{{ $t("tableHeaderStaff") }}</th>
+          <th scope="col" style="width: 10%">
+            {{ $t("tableHeaderCompletionStatus") }}
+          </th>
+          <th style="width: 10%"></th>
         </tr>
       </thead>
       <tbody>
@@ -73,26 +76,26 @@
           <td>{{ todo.details }}</td>
           <td>{{ todo.deadline }}</td>
           <td>{{ getStaffName(todo.staff) }}</td>
-          <td class="text-center">
+          <td>
             <input
               type="checkbox"
-              class="big-checkbox"
+              class="big-checkbox ms-2"
               :checked="todo.completed"
               @change="toggleCompleted(todo.id)"
             />
           </td>
-          <td class="text-center">
+          <td class="text-end">
             <button
               @click="showEditTodoModal(todo)"
-              class="btn btn-sm btn-warning me-1 mb-1"
+              class="btn btn-sm btn-warning mb-1"
             >
-              <font-awesome-icon icon="pen-nib" /> Edit
+              <font-awesome-icon icon="pen-nib" /> {{ $t("editButton") }}
             </button>
             <button
               @click="showDeleteTodoModal(todo)"
               class="btn btn-sm btn-danger"
             >
-              <font-awesome-icon icon="trash-alt" /> Delete
+              <font-awesome-icon icon="trash-alt" /> {{ $t("deleteButton") }}
             </button>
             <!-- EditTodoModal component, which is shown or hidden based on the value of editTodoModalActive -->
             <!-- @update:editTodoModalActive="editTodoModalActive = $event" was originally put within EditTodoModal tag =>Not needed since the user's input is automatically reflected in the target todo record.-->
@@ -211,4 +214,6 @@ const displayedTodos = computed(() => {
 const toggleCompleted = (id) => {
   todoStore.toggleCompleted(id);
 };
+
+const { locale } = useI18n();
 </script>
