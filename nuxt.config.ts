@@ -1,11 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   srcDir: "src/",
   devtools: { enabled: true },
   modules: [
     '@pinia/nuxt',
     '@nuxt/ui',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    vueI18n: './i18n.config.ts'
+  },
   css: [
     '~/assets/css/style.css',
     '~/assets/css/tailwind.css',
@@ -13,7 +18,7 @@ export default defineNuxtConfig({
   ],
   plugins: [
     '~/plugins/fontawesome.ts',
-    '~/plugins/pinia-persistedstate.ts', 
+    '~/plugins/pinia-persistedstate.ts',
   ],
   app: {
     head:{

@@ -33,7 +33,7 @@
         Completed
       </button>
     </div>
-
+    <p>{{ $t('welcome') }}</p>
     <!-- Button to show the modal to add new todo -->
     <button class="btn btn-outline-primary mt-2" @click="toggleAddTodoModal">
       <font-awesome-icon icon="plus" /> Add New Todo
