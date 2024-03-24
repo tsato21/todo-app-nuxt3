@@ -62,7 +62,7 @@ This feature allows you to manage your todos. You can add, update, and delete to
     * "Staff" becomes selectable by adding staff in the Staff List. (Explained in "Managing Staff List")
 3. The new todo will be automatically added to the todo list table.
 
-#### Updating a Todo
+#### Editing/Updating a Todo
 1. Click the "Edit" button of the todo you want to update.
 2. Modify the todo details in the edit screen and click "Close".
 3. The updated todo will be automatically reflected in the todo list table.
@@ -90,7 +90,7 @@ If you would like to assign todos to certain staff, use this feature.
 1. Input staff name and click "Add".
 2. Added staff will be automatically shown in the staff list table.
 
-#### Updating Staff Name
+#### Editing/Updating Staff Name
 1. Click "Edit" of a particular staff.
 2. Modify the staff name and click "Close" in the update screen.
 3. The staff name in the table will be automatically modified.
