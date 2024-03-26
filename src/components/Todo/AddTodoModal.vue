@@ -53,7 +53,7 @@
 
 <script setup lang="ts">
 // Importing necessary functions from Vue 3 Composition API and Yup library
-import { defineProps, defineEmits, watch, reactive } from "vue";
+import { defineProps, defineEmits, reactive } from "vue";
 import { object, string, date, number } from "yup";
 // Importing the todo and staff stores
 import { useTodoStore } from "@/stores/todoStore";
@@ -93,30 +93,30 @@ const schema = object({
 });
 
 // Create a reactive object to store the form input
-const todo = reactive({
+const todo: {
+  name: string;
+  details: string;
+  deadline: Date | null;
+  staff: number | null;
+  [key: string]: string | Date | number | null;
+} = reactive({
   name: "",
   details: "",
-  deadline: "",
-  staff: "",
+  deadline: null,
+  staff: null,
 });
 
 // Create a function to add a new todo
 const addTodo = () => {
   todoStore.addTodo({ ...todo });
   for (let key in todo) {
-    todo[key] = "";
+    if (key === 'deadline' || key === 'staff') {
+      todo[key] = null;
+    } else {
+      todo[key] = "";
+    }
   }
   // Emit the custom event to close the modal
   emit("update:addTodoModalActive", false);
 };
-
-// Watch the staff property and convert it to a number
-watch(
-  () => todo.staff,
-  (newVal, oldVal) => {
-    if (newVal !== oldVal) {
-      todo.staff = Number(newVal);
-    }
-  },
-);
 </script>

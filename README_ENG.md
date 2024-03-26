@@ -3,7 +3,7 @@
 
 ## Setup
 
-1. Install Node.js and check the version. Nuxt3 requires Node.js version 14 or higher, but some packages may require version 18 or higher. Therefore, it is recommended to install Node.js version 18 or higher.
+1. Install Node.js and check the version. Nuxt3 requires Node.js version 18 or higher.
 
 ```bash
 nodenv install 18.0.0

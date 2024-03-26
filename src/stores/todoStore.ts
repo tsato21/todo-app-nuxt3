@@ -8,8 +8,8 @@ export const useTodoStore = defineStore("todo", {
       id: number;
       name: string;
       details: string;
-      deadline?: Date;
-      staff?: number;
+      deadline?: Date | null;
+      staff?: number | null;
       completed?: boolean;
     }>,
     nextId: 1,
@@ -20,9 +20,8 @@ export const useTodoStore = defineStore("todo", {
     addTodo(todo: {
       name: string;
       details: string;
-      deadline?: Date;
-      staff?: number;
-      completed?: boolean;
+      deadline?: Date | null;
+      staff?: number | null;
     }) {
       this.todos.push({ ...todo, id: this.nextId++ });
     },
